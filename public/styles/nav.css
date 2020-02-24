@@ -1,4 +1,6 @@
 nav {
+  display: flex;
+  justify-content: space-between;
   position: relative;
   height: 120px;
   width: 100%;
@@ -14,7 +16,15 @@ nav span {
   font-family: 'Bungee';
 }
 
-#writeTweet {
+.writeTweet {
   font-family: 'Source Sans Pro';
-  float: right;
+  display: flex;
+  flex-direction: column;
+}
+
+.writeTweet span {
+  font-family: 'Source Sans Pro';
+}
+#downArrow {
+  text-align: center;
 }

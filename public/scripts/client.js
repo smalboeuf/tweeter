@@ -4,3 +4,4 @@
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
 
+//Event handler for when they make a tweet
