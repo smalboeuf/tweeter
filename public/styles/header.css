@@ -1,0 +1,11 @@
+header {
+  height: 400px;
+  width: 100%;
+  background-color: #c2a800;
+  padding: 1em;
+}
+
+header div {
+  position: relative;
+  text-align: center;
+}
