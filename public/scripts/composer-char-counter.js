@@ -2,9 +2,9 @@ $(document).ready(function() {
   // --- our code goes here ---
 
   //Event Handlers
-  $('#tweetChars').keydown(() => {
+  $('#tweetChars').keyup(() => {
     let maxChars = 140;
-    let currentCharLength = $('#tweetChars').val().length + 1;
+    let currentCharLength = $('#tweetChars').val().length;
 
     if (maxChars - currentCharLength < 0) {
       console.log("Here");
