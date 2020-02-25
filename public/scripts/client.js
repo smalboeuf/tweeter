@@ -11,11 +11,24 @@ const createTweetElement = function (tweetObj) {
   let person = $("<div>").addClass("person");
   let userImg = $("<img>").addClass("tweetPic");
   let tweetContent = $("<span>").addClass("tweetContent");
-  let username = $("<span>");
+  let username = $("<span>").addClass("handle");
   let tweetFooter = $("<div>").addClass("tweetFooter");
-  let daysAgoPosted = $("<span>").text("10 days ago"); //Need to learn how to calculate the amount of days
-  let footerIcons = $("<span>").text("Icons");
 
+
+  //Calculating how many days ago this was created
+  let tweetDate = new Date(tweetObj.created_at)
+  let daysAgoPosted = $("<span>").text(dateDifferenceCalculator(tweetDate) + " days ago");
+
+  //Add icons
+  let heartIcon = $("<i>").addClass("fa fa-heart icons");
+  let flagIcon = $("<i>").addClass("fa fa-flag icons");
+  let retweetIcon = $("<i>").addClass("fa fa-retweet icons");
+
+  let footerIcons = $("<span>");
+  footerIcons.append(heartIcon);
+  footerIcons.append(flagIcon);
+  footerIcons.append(retweetIcon);
+  
 
   tweetFooter.append(daysAgoPosted);
   tweetFooter.append(footerIcons);
@@ -23,7 +36,9 @@ const createTweetElement = function (tweetObj) {
   userImg.attr("src", tweetObj.user.avatars);
 
   person.append(userImg);
-  person.append(tweetObj.user.name);
+  let usersName = $("<span>").addClass("name");
+  usersName.text(tweetObj.user.name);
+  person.append(usersName);
   profile.append(person);
 
   //Username tag
@@ -43,6 +58,19 @@ const createTweetElement = function (tweetObj) {
 
   return tweetElement;
 }
+
+//Calculate the difference in dates
+const dateDifferenceCalculator = function(tweetDate) {
+
+  let today = new Date();
+  let currentDate = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+  let convertedTweetDate = new Date(tweetDate);
+  let differenceInTime = Date.now() - convertedTweetDate.getTime();
+
+  return Math.floor(differenceInTime / 86400000);
+
+}
+
 
 //Rendering the tweets
 const renderTweets = function(tweetObjs) {

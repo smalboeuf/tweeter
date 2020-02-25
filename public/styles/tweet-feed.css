@@ -7,8 +7,17 @@
   margin:1.5em;
 }
 
+.handle {
+  visibility: hidden;
+  color: rgba(61, 61, 214, 0.297);
+}
+
 .tweet:hover { 
   box-shadow: 12px 12px 2px 1px rgba(66, 66, 228, 0.22);
+}
+
+.tweet:hover .handle {
+  visibility: visible;
 }
 
 hr {
@@ -53,4 +62,12 @@ hr {
 
 .tweetPic{
   width: 4rem;
+}
+
+.icons {
+  padding: 0.2em;
+}
+
+.name {
+  padding: 0.5em;
 }
