@@ -4,14 +4,18 @@
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
 
+
 //Event handler for when they make a tweet
 const createTweetElement = function (tweetObj) {
+
   let tweetElement = $("<div>").addClass("tweet");
   let profile = $("<div>").addClass("profile");
   let person = $("<div>").addClass("person");
   let userImg = $("<img>").addClass("tweetPic");
-  let tweetContent = $("<span>").addClass("tweetContent");
-  let username = $("<span>").addClass("handle");
+
+  //Settings content of the tweet
+  let tweetContent = $("<span>").addClass("tweetContent").text(tweetObj.content.text);
+  let username = $("<span>").addClass("handle").text(tweetObj.user.handle);;
   let tweetFooter = $("<div>").addClass("tweetFooter");
 
 
@@ -24,29 +28,25 @@ const createTweetElement = function (tweetObj) {
   let flagIcon = $("<i>").addClass("fa fa-flag icons");
   let retweetIcon = $("<i>").addClass("fa fa-retweet icons");
 
+  //Adding Icons
   let footerIcons = $("<span>");
   footerIcons.append(heartIcon);
   footerIcons.append(flagIcon);
   footerIcons.append(retweetIcon);
-  
-
   tweetFooter.append(daysAgoPosted);
   tweetFooter.append(footerIcons);
 
+  //User Profile
   userImg.attr("src", tweetObj.user.avatars);
-
   person.append(userImg);
-  let usersName = $("<span>").addClass("name");
-  usersName.text(tweetObj.user.name);
+  
+  //User's Name
+  let usersName = $("<span>").addClass("name").text(tweetObj.user.name);;
   person.append(usersName);
   profile.append(person);
 
-  //Username tag
-  username.text(tweetObj.user.handle);
+  //Handle tag
   profile.append(username);
-
-  //Setting content of the tweet
-  tweetContent.text(tweetObj.content.text);
 
   //Bringing together all crafted elements
   tweetElement.append(profile);
@@ -58,6 +58,10 @@ const createTweetElement = function (tweetObj) {
 
   return tweetElement;
 }
+
+////////////
+//Functions
+////////////
 
 //Calculate the difference in dates
 const dateDifferenceCalculator = function(tweetDate) {
@@ -71,7 +75,6 @@ const dateDifferenceCalculator = function(tweetDate) {
 
 }
 
-
 //Rendering the tweets
 const renderTweets = function(tweetObjs) {
 
@@ -82,54 +85,48 @@ const renderTweets = function(tweetObjs) {
 
 }
 
-// Test / driver code (temporary). Eventually will get this from the server.
-const tweetData = {
-  "user": {
-    "name": "Newton",
-    "avatars": "https://i.imgur.com/73hZDYK.png",
-      "handle": "@SirIsaac"
-    },
-  "content": {
-      "text": "If I have seen further it is by standing on the shoulders of giants"
-    },
-  "created_at": 1461116232227
-}
-
-//On Load execute new tweet
-
+//On Load
 $(document).ready(function() {
 
-  //Creating a new tweet and appending it to the tweet feed
-  // const $tweet = createTweetElement(tweetData);
-  // $(".tweetFeed").append($tweet);
+  const loadTweets = function () {
+    $.ajax('/tweets', { method: 'GET' })
+    .then(function (data) {
+      renderTweets(data);
+    });
+  }
 
-  renderTweets(data);
-
-
+  loadTweets();
 });
 
-const data = [
-  {
-    "user": {
-      "name": "Newton",
-      "avatars": "https://i.imgur.com/73hZDYK.png"
-      ,
-      "handle": "@SirIsaac"
-    },
-    "content": {
-      "text": "If I have seen further it is by standing on the shoulders of giants"
-    },
-    "created_at": 1461116232227
-  },
-  {
-    "user": {
-      "name": "Descartes",
-      "avatars": "https://i.imgur.com/nlhLi3I.png",
-      "handle": "@rd" },
-    "content": {
-      "text": "Je pense , donc je suis"
-    },
-    "created_at": 1461113959088
-  }
-]
 
+////////////////
+//AJAX requests
+////////////////
+
+$("#addNewTweet").submit(function(event) {
+  alert( "Handler for .submit() called." );
+  event.preventDefault();
+});
+
+$(function() {
+  const $button = $('#addNewTweet');
+  $button.on('click', function (event) {
+    event.preventDefault(); 
+    
+    let tweetContent = $("#tweetChars").val();
+    
+    if (!tweetContent || tweetContent.length > 140) {
+      //Don't submit 
+      alert("Error: The field is either empty or you are over the character limit.");
+    } else {
+      //Submit
+      console.log('Button clicked, performing ajax call...');
+      $.ajax('/tweets', { method: 'POST' })
+      .then(function (index) {
+        console.log('Success: ', index);
+    });
+    }
+
+    
+  });
+});

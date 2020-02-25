@@ -7,7 +7,6 @@ $(document).ready(function() {
     let currentCharLength = $('#tweetChars').val().length;
 
     if (maxChars - currentCharLength < 0) {
-      console.log("Here");
       $('.counter').css('color', 'red');
     }
 
