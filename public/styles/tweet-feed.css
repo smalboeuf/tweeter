@@ -5,7 +5,6 @@
   width: 80%;
   text-align: left;
   margin:1.5em;
-  word-wrap: break;
 }
 
 .handle {
@@ -44,13 +43,11 @@ hr {
   word-break: break-word;
 }
 .tweetFeed {
-
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   padding-bottom: 2em;
-  
 }
 
 .tweetFooter {
@@ -59,7 +56,7 @@ hr {
 }
 
 .tweetFooter span {
-   font-size: medium;
+  font-size: medium;
 }
 
 .tweetPic{
@@ -72,27 +69,4 @@ hr {
 
 .name {
   padding: 0.5em;
-}
-
-.circleClicker {
-  position: fixed;
-  right: 3%;
-  bottom: 5%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 5rem;
-  width: 5rem;
-  border-radius: 50%;
-  background-color: red;
-  z-index: 4;
-  transition: background-color 0.5s ease;
-}
-
-.circleClicker i {
-  color: white;
-}
-
-.circleClicker:hover {
-  background-color: darkred;
 }

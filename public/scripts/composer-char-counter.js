@@ -1,3 +1,4 @@
+//Updates number counter for tweet
 $(document).ready(function() {
   $('#tweetChars').keyup(() => {
     let maxChars = 140;

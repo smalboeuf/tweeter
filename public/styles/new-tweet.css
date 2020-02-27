@@ -30,7 +30,7 @@ form textarea {
 }
 
 .new-tweet h2 {
-text-align: center;
+  text-align: center;
 }
 
 form input, form span {
@@ -51,7 +51,6 @@ form input, form span {
   flex-direction: column;
   justify-content: center;
   align-items: center ;
-
 }
 
 .errorMessage {
@@ -62,4 +61,3 @@ form input, form span {
   padding: 1em;
   display: none;
 }
-

@@ -26,11 +26,35 @@ nav span {
 .writeTweet span {
   font-family: 'Source Sans Pro';
 }
-#downArrow {
-  text-align: center;
-}
 
 #writeATweet {
   text-decoration: none;
   color: #FFFFFF;
+}
+
+#downArrow {
+  text-align: center;
+}
+
+.circleClicker {
+  position: fixed;
+  right: 3%;
+  bottom: 5%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 5rem;
+  width: 5rem;
+  border-radius: 50%;
+  background-color: red;
+  z-index: 4;
+  transition: background-color 0.5s ease;
+}
+
+.circleClicker i {
+  color: white;
+}
+
+.circleClicker:hover {
+  background-color: darkred;
 }
