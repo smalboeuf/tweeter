@@ -8,7 +8,10 @@ $(document).ready(function() {
 
     if (maxChars - currentCharLength < 0) {
       $('.counter').css('color', 'red');
+    } else {
+      $('.counter').css('color', '#545149');
     }
+
 
     $('.counter').html(maxChars - currentCharLength);
     

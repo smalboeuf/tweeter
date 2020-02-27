@@ -27,3 +27,8 @@ nav span {
 #downArrow {
   text-align: center;
 }
+
+#writeATweet {
+  text-decoration: none;
+  color: #FFFFFF;
+}

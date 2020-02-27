@@ -1,0 +1,21 @@
+
+.responsiveFlow {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Desktop style */
+@media only screen and (min-width: 1024px) {
+  
+  .responsiveFlow {
+    flex-direction: row;
+  }
+
+  header {
+    width: 45%;
+    margin-top: 5%;
+    margin-left: 5%;
+    margin-right: 3%;
+  }
+
+}

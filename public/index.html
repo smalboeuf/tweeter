@@ -1,20 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <!-- Meta Information -->
+    <!-- Meta Information --> 
     <title>Tweeter - Home Page</title>
 
     <!-- External CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" type="text/css" />
     <link href="https://fonts.googleapis.com/css?family=Bungee|Source+Sans+Pro:400,400i,700,700i&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    
+ 
     <!-- App CSS -->
     <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
     <link rel="stylesheet" href="/styles/nav.css" type="text/css">
     <link rel="stylesheet" href="/styles/header.css" type="text/css">
     <link rel="stylesheet" href="/styles/new-tweet.css">
     <link rel="stylesheet" href="/styles/tweet-feed.css">
+    <link rel="stylesheet" href="/styles/mediaQueries.css">
     
 
     <!-- External JS -->
@@ -24,27 +25,41 @@
     <!-- App JS -->
     <script type="text/javascript" src="/scripts/client.js"></script>
     <script type="text/javascript" src="/scripts/composer-char-counter.js"></script>
+
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0' />
   </head>
 
   <body>
     <!-- Top nav bar (fixed) -->
     <nav>
       <span>tweeter</span>
-      <div class="writeTweet"><span>Write a new tweet</span><span id="downArrow" style='font-size:42px;'>&#8595;</span></div>
-      
-      
+      <a id="writeATweet" onclick="toggleSlide()" href="#">
+        <div class="writeTweet">
+          <span>Write a new tweet</span>
+          <span id="downArrow" style='font-size:42px;'>&#8595;</span>
+        </div>
+      </a>
     </nav>
+    <a href="#" onclick="scrollToTop()">
+    <div class="circleClicker">
+       <i class="fa fa-angle-double-up"></i>
+    </div>
+    </a>
+
+    <div class="responsiveFlow">
+  
     <header> 
         <div>
             <img src="/images/profile-hex.png"> 
         </div>
         <div>
-            <h2>Your Name</h2>
+            <h2>Sheldon Malboeuf</h2>
         </div>
     </header>
-
     <main>
         <section class="new-tweet">
+            <p class="errorMessage">Error: The tweet you inputted is either too long or contained nothing. Please try again</p>
+          <div class="drawer">
             <h2>Compose Tweet</h2>
             <form method="POST" name="newTweet">
               <textarea id="tweetChars" name="text" placeholder="What are you humming about?"></textarea> <br>
@@ -53,15 +68,14 @@
               <span class="counter">140</span>
             </div>
             </form>
-          </section>
+          </div>
+        </section>
          <br>
-
         <div class="tweetFeed">
-         
 
         </div>
-         <footer></footer>
     </main>
+  </div>
 
     <!-- Page-specific (main) content here -->
     <main class="container"></main>
