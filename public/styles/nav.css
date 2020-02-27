@@ -13,12 +13,12 @@ nav {
 
 nav span {
   font-family: 'Bungee';
-  font-size: 0.75em;
+  font-size: 0.80em;
 }
 
 .writeTweet {
   font-family: 'Source Sans Pro';
-  font-size: 0.75em;
+  font-size: 0.80em;
   display: flex;
   flex-direction: column;
 }
