@@ -86,9 +86,13 @@ hr {
   border-radius: 50%;
   background-color: red;
   z-index: 4;
+  transition: background-color 0.5s ease;
 }
 
 .circleClicker i {
   color: white;
 }
 
+.circleClicker:hover {
+  background-color: darkred;
+}
