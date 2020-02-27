@@ -8,7 +8,7 @@ This website is built using HTML, CSS, JS, jQuery and AJAX front-end, and Node, 
 
 - This app allows for you to create tweets which is then fetched and loaded on to the page automatically. 
 
-- There is a smooth scroller icon that appears in the bottom left to bring you back to the top easily. 
+- There is a smooth scroller icon that appears in the bottom right to bring you back to the top easily. 
 - This project was made with a mobile first responsive design.
 
 
