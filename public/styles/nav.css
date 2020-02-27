@@ -1,5 +1,4 @@
 nav {
-
   display: flex;
   justify-content: space-between;
   position: fixed;
@@ -14,10 +13,12 @@ nav {
 
 nav span {
   font-family: 'Bungee';
+  font-size: 0.75em;
 }
 
 .writeTweet {
   font-family: 'Source Sans Pro';
+  font-size: 0.75em;
   display: flex;
   flex-direction: column;
 }
