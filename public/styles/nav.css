@@ -1,7 +1,8 @@
 nav {
+
   display: flex;
   justify-content: space-between;
-  position: relative;
+  position: fixed;
   height: 120px;
   width: 100%;
   z-index: 2;

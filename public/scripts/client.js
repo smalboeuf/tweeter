@@ -3,7 +3,7 @@
 ////////////
 
 //Event handler for when they make a tweet
-const createTweetElement = function (tweetObj) {
+const createTweetElement = function(tweetObj) {
 
   let tweetElement = $("<div>").addClass("tweet");
   let profile = $("<div>").addClass("profile");
@@ -12,12 +12,12 @@ const createTweetElement = function (tweetObj) {
 
   //Settings content of the tweet
   let tweetContent = $("<span>").addClass("tweetContent").text(tweetObj.content.text);
-  let username = $("<span>").addClass("handle").text(tweetObj.user.handle);;
+  let username = $("<span>").addClass("handle").text(tweetObj.user.handle);
   let tweetFooter = $("<div>").addClass("tweetFooter");
 
 
   //Calculating how many days ago this was created
-  let tweetDate = new Date(tweetObj.created_at)
+  let tweetDate = new Date(tweetObj.created_at);
   let daysAgoPosted = $("<span>").text(dateDifferenceCalculator(tweetDate) + " days ago");
 
   //Add icons
@@ -38,7 +38,7 @@ const createTweetElement = function (tweetObj) {
   person.append(userImg);
   
   //User's Name
-  let usersName = $("<span>").addClass("name").text(tweetObj.user.name);;
+  let usersName = $("<span>").addClass("name").text(tweetObj.user.name);
   person.append(usersName);
   profile.append(person);
 
@@ -54,7 +54,7 @@ const createTweetElement = function (tweetObj) {
   tweetElement.append(tweetFooter);
 
   return tweetElement;
-}
+};
 
 //Calculate the difference in dates
 const dateDifferenceCalculator = function(tweetDate) {
@@ -63,92 +63,90 @@ const dateDifferenceCalculator = function(tweetDate) {
   let differenceInTime = Date.now() - convertedTweetDate.getTime();
 
   return Math.floor(differenceInTime / 86400000);
-
-}
+};
 
 //Rendering the tweets
 const renderTweets = function(tweetObjs) {
-
   for (let tweet of tweetObjs) {
     let newTweet = createTweetElement(tweet);
     $(".tweetFeed").prepend(newTweet);
   }
-
-}
+};
 
 //Validate tweets
-const tweetValidationCheck = function (tweetContent) {
+const tweetValidationCheck = function(tweetContent) {
   if (!tweetContent || tweetContent.length > 140) {
     return false;
   } else {
     $(".errorMessage").slideUp();
     return true;
   }
-}
+};
 
 //Ajax request for tweets
-const loadTweets = function () {
+const loadTweets = function() {
 
   $.ajax({
     method: 'GET',
     url: "http://localhost:8080/tweets"
   })
-  .done(renderTweets);
-}
+    .done(renderTweets);
+};
 
 //Load new tweet
-const loadNewTweet = function () {
+const loadNewTweet = function() {
   $.ajax({
     method: 'GET',
     url: "http://localhost:8080/tweets"
   })
-  .done(renderNewTweet);
-}
+    .done(renderNewTweet);
+};
+
 //Make tweet appear on page
-const renderNewTweet = function (tweets) {
+const renderNewTweet = function(tweets) {
   let newTweet = createTweetElement(tweets[tweets.length - 1]);
   $(".tweetFeed").prepend(newTweet);
-}
+};
 
-//Toggle drawer effect on specific div
-const toggleSlide = function () {
+//Toggle drawer effect on writing a new tweet div
+const toggleSlide = function() {
   $(".drawer").toggleClass("slide-out");
-}
+};
 
 //Scroll to the top of the page
-const scrollToTop = function () {
+const scrollToTop = function() {
   $("#writeATweet").scroll();
-}
+};
 
+//////////
 //On Load
+//////////
+
 $(document).ready(function() {
 
   loadTweets();
 
+  //Logic for bottom right scroll button
   $(".circleClicker").hide();
   $(window).scroll(function() {
     if ($(window).scrollTop() > 400) {
       $(".circleClicker").fadeIn();
+      $(".writeTweet").fadeOut();
     } else {
       $(".circleClicker").fadeOut();
+      $(".writeTweet").fadeIn();
     }
   });
 });
-
 
 ////////////////
 //AJAX requests
 ////////////////
 
-$("#addNewTweet").submit(function(event) {
-  alert( "Handler for .submit() called." );
-  event.preventDefault();
-});
-
+//When add new tweet button is pushed, validate content and then send ajax request
 $(function() {
-  const $button = $('#addNewTweet');
-  $button.on('click', function (event) {
-    event.preventDefault(); 
+  $('#addNewTweet').on('click', function(event) {
+    event.preventDefault();
     
     let tweetContent = $("#tweetChars").val();
 
@@ -157,29 +155,23 @@ $(function() {
       console.log('Button clicked, performing ajax call...');
 
       let postData = {
-        //My specific info
-        // "user": {
-        //   "name": "Sheldon",
-        //   "avatars": "https://i.imgur.com/73hZDYK.png"
-        //   ,
-        //   "handle": "@SeaShel"
-        // },
-
-          "text": tweetContent,
-    
+        "text": tweetContent,
       };
       
+      //Ajax request to add tweet to /tweets
       $.ajax({
         method: 'POST',
         url: "http://localhost:8080/tweets",
         data: postData
       })
-      .done(loadNewTweet);
+        .done(loadNewTweet);
 
+      //Clearing the text area
       $("#tweetChars").val("");
+      $('.counter').html(140);
       
     } else {
-      //Don't submit 
+      //Don't submit
       $(".errorMessage").slideDown();
     }
   });

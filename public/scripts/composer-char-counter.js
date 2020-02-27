@@ -1,7 +1,4 @@
 $(document).ready(function() {
-  // --- our code goes here ---
-
-  //Event Handlers
   $('#tweetChars').keyup(() => {
     let maxChars = 140;
     let currentCharLength = $('#tweetChars').val().length;
@@ -11,8 +8,6 @@ $(document).ready(function() {
     } else {
       $('.counter').css('color', '#545149');
     }
-
-
     $('.counter').html(maxChars - currentCharLength);
     
   });
