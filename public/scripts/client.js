@@ -81,6 +81,7 @@ const tweetValidationCheck = function (tweetContent) {
   if (!tweetContent || tweetContent.length > 140) {
     return false;
   } else {
+    $(".errorMessage").slideUp();
     return true;
   }
 }
@@ -175,6 +176,7 @@ $(function() {
       })
       .done(loadNewTweet);
 
+      $("#tweetChars").val("");
       
     } else {
       //Don't submit 
